@@ -63,6 +63,10 @@ public class Place implements Serializable {
     @Size(max = 2)
     @Column(name = "place_isigac")
     private String placeIsigac;
+    @Size(max = 100)
+    @Column(name = "place_city")
+    private String placeCity;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "place")
     private Collection<AccReport> accReportCollection;
 
@@ -129,6 +133,14 @@ public class Place implements Serializable {
 
     public void setPlaceIsigac(String placeIsigac) {
         this.placeIsigac = placeIsigac;
+    }
+
+    public String getPlaceCity() {
+        return placeCity;
+    }
+
+    public void setPlaceCity(String placeCity) {
+        this.placeCity = placeCity;
     }
 
     @XmlTransient

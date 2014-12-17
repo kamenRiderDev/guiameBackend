@@ -5,7 +5,7 @@
  */
 package service;
 
-import facade.AccReportFacade;
+
 import facade.PlaceFacade;
 import facade.UserFacade;
 import java.math.BigDecimal;
@@ -81,9 +81,19 @@ public class AccReportFacadeREST extends AbstractFacade<AccReport> {
         {
             userFacade.create(entity.getUser());
         }
+        
         AccReportPK accReportPK = new AccReportPK(entity.getPlace().getIdplace(), entity.getUser().getIduser());
         entity.setAccReportPK(accReportPK);
-        super.create(entity);
+        
+        if (super.find(accReportPK) == null)
+        {
+            super.create(entity);
+        }
+        else
+        {
+            super.edit(entity);
+        }
+        
     }
 
     @PUT
